@@ -1,23 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react'
+
+import { Router,Link,navigate } from '@reach/router'
+import Home from './Components/Home'
+import Hello from './Components/Hello'
+import Four from './Components/Four'
+
+
+
 
 function App() {
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    navigate("/home")
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input onClick={ handleClick }type="button" value="Home"/>
+      <Router>
+        <Home path="/home"/>
+        <Four path="/home/:id"/>
+        <Hello path="/home/:id/:color/:background"/>
+      </Router>
     </div>
   );
 }
